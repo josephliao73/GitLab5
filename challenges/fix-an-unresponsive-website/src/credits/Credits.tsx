@@ -1,3 +1,5 @@
+import React, { useState, useEffect } from 'react';
+
 const Credits = () => {
 
     const credits = [
@@ -25,15 +27,32 @@ const Credits = () => {
         return <p>{props.credit.name} - {props.credit.role}</p>;
     }
 
+    const [displayedCredits, setDisplayedCredits] = useState<JSX.Element[]>([]);
+    const [currentIndex, setCurrentIndex] = useState(0);
 
-    const data = [];
+    useEffect(() => {
+        if (currentIndex < credits.length) {
+            const timeoutId = setTimeout(() => {
+                setDisplayedCredits(prev => [
+                    ...prev,
+                    <DisplayCredit key={currentIndex} credit={credits[currentIndex]} />
+                ]);
+                setCurrentIndex(prev => prev + 1);
+            }, 0);
 
-    for (let i = 0; i < credits.length; i++) {
-        data.push(<DisplayCredit key={i} credit={credits[i]} />);
-    }
+            return () => clearTimeout(timeoutId);
+        }
+    }, [currentIndex]);
+
+
+    // const data = [];
+
+    // for (let i = 0; i < credits.length; i++) {
+    //     data.push(<DisplayCredit key={i} credit={credits[i]} />);
+    // }
 
     return (<div>This app was written by:
-        {data}
+        {displayedCredits}
     </div>)
 
 }
