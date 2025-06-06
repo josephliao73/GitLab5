@@ -1,23 +1,55 @@
-# No Readme
+# Compact Disc Management API
 
 ## Introduction
 
-This application does something. - no idea what. 
+The Compact Disc Management API is a Spring Boot application that provides a RESTful interface for managing a collection of compact discs and their associated tracks. It allows users to perform CRUD (Create, Read, Update, Delete) operations on compact discs and tracks, making it suitable for applications such as music catalog management or inventory systems.
 
-It can also be deployed - no idea how.
+The application uses JPA (Java Persistence API) for database interactions, Swagger for API documentation, and supports features like caching and transactional operations.
 
-It might be good if we can monitor it - no idea how either.
+---
 
+## Features
 
-## The Challenge
+- **Compact Disc Management**:
+  - Add, update, retrieve, and delete compact discs.
+  - Each compact disc includes details such as title, artist, price, and the number of tracks.
 
-Can you create a readme file for this application? It should be a good readme file as you would expect for any properly maintained application.
+- **Track Management**:
+  - Tracks are associated with compact discs and include details like title and a reference to the compact disc they belong to.
 
-## Points
+- **RESTful API**:
+  - Exposes endpoints for managing compact discs and tracks.
+  - Supports JSON-based requests and responses.
 
-This readme is worth up to 100 points.
+- **Swagger Integration**:
+  - Provides interactive API documentation for exploring and testing endpoints.
 
+- **Database Integration**:
+  - Uses JPA to map entities (`CompactDisc` and `Track`) to database tables (`compact_discs` and `tracks`).
 
-## Mark Scheme
+- **Transactional Operations**:
+  - Ensures data consistency during database operations.
 
-100 - The readme makes sense to the instructor and has all the relevant sections that might be expected in production grade readme
+---
+
+## API Endpoints
+
+### Compact Disc Endpoints
+- **GET `/api/compactdiscs`**: Retrieve all compact discs.
+- **GET `/api/compactdiscs/{id}`**: Retrieve a specific compact disc by its ID.
+- **POST `/api/compactdiscs`**: Add a new compact disc.
+- **DELETE `/api/compactdiscs/{id}`**: Delete a compact disc by its ID.
+- **DELETE `/api/compactdiscs`**: Delete a compact disc by passing its details in the request body.
+
+### Track Endpoints
+- Tracks are managed as part of the `CompactDisc` entity and are associated via the `cd_id` field.
+
+---
+
+## Technologies Used
+
+- **Spring Boot**: Framework for building the application.
+- **JPA (Java Persistence API)**: For database interactions.
+- **Swagger**: For API documentation and testing.
+- **Log4j**: For logging application events.
+- **H2 Database (or other supported databases)**: For persisting data.
